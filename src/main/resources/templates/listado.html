@@ -14,17 +14,30 @@
     <body>
         <!-- As a link -->
         <nav class="navbar navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">Sistema gestor de eventos</a>
+            <a class="navbar-brand" th:href="@{/}">Sistema gestor de eventos</a>
             <img src =" img/Evento-icono.png" width="30" height="30" alt="Logo">
+            <form th:action="@{/buscar}" class="form-inline my-2 my-lg-0">
+                <input autofocus="autofocus" name="q" class="form-control mr-sm-2" type="search" th:placeholder="${param.q}" aria-Label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+            </form>
         </nav>
 
         <div class="container mt-5 ev-destacados">
+            <div class="row">
+                <div class="col col-md-12 text-right mb-4">
+                    <a th:href="@{/actividades/crear}" class="btn btn-outline-success">Crear actividad</a>
+                </div>
+            </div>
             <div class="row">
                 <div th:each="actividad : ${actividades}" class="col-md-4 mb-4">
                     <div class="card">
                         <img th:src="${actividad.imagenURL}" class="card-img-top" alt="almuerzo">
                         <div class="card-body">
                             <h5 th:text="${actividad.nombre}" class="card-title"></h5>
+                            <p>
+                                <a th:href="@{/actividadesPorEvento(eventoId=${actividad.evento.id})}" 
+                                   class="badge badge-pill badge-warning" th:text="${actividad.evento.nombreEvento}"></a>
+                            </p>
                             <p>Ubicacion: <span th:text="${actividad.ubicacion}" class="card-text"></span></p>
                             <p>Capacidad para: <span th:text="${actividad.cupoPersonas}" class="card-text"></span></p>
                             <p>Fecha de inicio: <span th:text="${actividad.fechaInicio}" class="card-text"></span></p>

@@ -1,5 +1,16 @@
+com\sgecj\eventos\domain\AreaTematica.class
+com\sgecj\eventos\controller\ActividadAbmController.class
 com\sgecj\eventos\repository\ActividadRepository.class
 com\sgecj\eventos\domain\Actividad.class
+com\sgecj\eventos\service\CategoriaService.class
+com\sgecj\eventos\domain\Categoria.class
+com\sgecj\eventos\domain\UnidadAcademica.class
 com\sgecj\eventos\EventosApplication.class
 com\sgecj\eventos\controller\ListadoController.class
+com\sgecj\eventos\domain\Evento.class
+com\sgecj\eventos\repository\CategoriaRepository.class
+com\sgecj\eventos\repository\EventoRepository.class
+com\sgecj\eventos\service\EventoService.class
+com\sgecj\eventos\repository\AreaTematicaRepository.class
+com\sgecj\eventos\service\AreaTematicaService.class
 com\sgecj\eventos\service\ActividadService.class
