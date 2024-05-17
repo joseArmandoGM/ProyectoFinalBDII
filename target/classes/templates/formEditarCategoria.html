@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="css/eventos.css">
 
-        <title>SGECJ</title>
+        <title>SGECJ - Alta de Categorias</title>
     </head>
     <body>
         <!-- Cabecera -->
@@ -33,48 +33,22 @@
             </div>
         </nav>
 
-        <!-- Campos para buscar y agregar actividades -->
-        <div class="container mt-5 ev-destacados">
-            <div class="row mb-4">
-                <!-- Barra de búsqueda -->
-                <div class="col-md-12 text-right mb-2">
-                    <form th:action="@{/buscar}" class="form-inline d-flex">
-                        <input autofocus name="q" class="form-control flex-grow-1 mr-2" type="search" th:placeholder="${param.q}" aria-label="Buscar">
-                        <button class="btn btn-primary" type="submit">Buscar</button>
-                    </form>
-                </div>
-                <!-- Permite crear una actividad -->
-                <div class="col-md-12 text-right mt-2">
-                    <a th:href="@{/actividades/crear}" class="btn btn-primary">Crear actividad</a>
-                </div>
-            </div>
 
+        <div class="container mt-5 ev-destacados">
             <div class="row">
-                <div th:each="actividad : ${actividades}" class="col-md-4 mb-4">
-                    <div class="card h-100">
-                        <img th:src="${actividad.imagenURL}" class="card-img-top" alt="actividad">
-                        <div class="card-body">
-                            <h5 th:text="${actividad.nombre}" class="card-title"></h5>
-                            <p>
-                                <a th:href="@{/actividadesPorEvento(eventoId=${actividad.evento.id})}" class="badge badge-pill badge-primary" th:text="${actividad.evento.nombreEvento}"></a>
-                            </p>
-                            <p>
-                                <a th:href="@{/actividadesPorCategoria(categoriaId=${actividad.categoria.id})}" class="badge badge-pill badge-info" th:text="${actividad.categoria.nombreCategoria}"></a>
-                            </p>
-                            <p>
-                                <a th:href="@{/actividadesPorAreaTematica(areaTematicaId=${actividad.areaTematica.id})}" class="badge badge-pill badge-info mb-3" th:text="${actividad.areaTematica.nombreAreaTematica}"></a>
-                            </p>
-                            <p><strong>Ubicación: </strong><span th:text="${actividad.ubicacion}"></span></p>
-                            <p><strong>Capacidad para: </strong><span th:text="${actividad.cupoPersonas}"></span></p>
-                            <p><strong>Fecha de inicio: </strong><span th:text="${actividad.fechaInicio}"></span></p>
-                            <p><strong>Fecha de cierre: </strong><span th:text="${actividad.fechaFinal}"></span></p>
-                            <p><strong>Hora de inicio: </strong><span th:text="${actividad.horaInicio}"></span></p>
-                            <p><strong>Duración: </strong><span th:text="${actividad.duracion}"></span></p>
+                <div class="col-md-12">
+                    <h1>Editar Categoría</h1>
+                    <form method="POST" th:action="@{/categorias/guardar}" th:object="${categoria}">
+                        <div class="form-group">
+                            <label for="id">ID</label>
+                            <input type="text" class="form-control" th:field="*{id}" id="id" readonly aria-describedby="idHelp">
                         </div>
-                        <div class="card-footer text-muted">
-                            <a th:href="@{/buscarActividadPorId(actividadId=${actividad.id})}" class="btn btn-outline-primary btn-block">Ver Detalles</a>
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" class="form-control" th:field="*{nombreCategoria}" id="nombre" placeholder="Nombre de la categoría" required>
                         </div>
-                    </div>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -84,14 +58,12 @@
         <footer class="bg-body-tertiary text-center">
             <!-- Grid container -->
             <div class="container p-4"></div>
-            <!-- Grid container -->
 
             <!-- Copyright -->
             <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
                 © 2024 Copyright:
                 <a class="text-body" href="https://mdbootstrap.com/">Sistema Gestor de Eventos Campus Jalpa</a>
             </div>
-            <!-- Copyright -->
         </footer>
 
         <!-- Optional JavaScript -->
