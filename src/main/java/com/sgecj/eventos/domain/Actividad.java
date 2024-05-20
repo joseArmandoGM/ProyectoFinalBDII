@@ -4,12 +4,15 @@
  */
 package com.sgecj.eventos.domain;
 
+import jakarta.persistence.Column;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 /**
  *
@@ -17,48 +20,39 @@ import jakarta.persistence.Id;
  */
 @Entity
 public class Actividad {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ACT_ID")
     private int id;
+    @Column(name = "ACT_NOMBRE")
     private String nombre;
+    @Column(name = "ACT_UBICACION")
     private String ubicacion;
+    @Column(name = "ACT_CUPO_PERSONAS")
     private String cupoPersonas;
+    @Column(name = "ACT_FECHA_INICIO")
     private LocalDate fechaInicio;
+    @Column(name = "ACT_FECHA_FINAL")
     private LocalDate fechaFinal;
+    @Column(name = "ACT_HORA_INICIO")
     private LocalTime horaInicio;
+    @Column(name = "ACT_DURACION")
     private String duracion;
+    @Column(name = "ACT_IMAGENURL")
     private String imagenURL;
-    
-    
-    
-    public Actividad(String nombre, String ubicacion, String cupoPersonas,
-            LocalDate fechaInicio, LocalDate fechaFinal, LocalTime horaInicio,
-            String duracion) {
-        this.nombre = nombre;
-        this.ubicacion = ubicacion;
-        this.cupoPersonas = cupoPersonas;
-        this.fechaInicio = fechaInicio;
-        this.fechaFinal = fechaFinal;
-        this. horaInicio = horaInicio;
-        this.duracion = duracion;
-    }
-    
-    public Actividad(int id, String nombre, String ubicacion, String cupoPersonas,
-            LocalDate fechaInicio, LocalDate fechaFinal, LocalTime horaInicio,
-            String duracion) {
-        this.id = id;
-        this.nombre = nombre;
-        this.ubicacion = ubicacion;
-        this.cupoPersonas = cupoPersonas;
-        this.fechaInicio = fechaInicio;
-        this.fechaFinal = fechaFinal;
-        this. horaInicio = horaInicio;
-        this.duracion = duracion;
-    }
-    
-    public Actividad() {
-        
-    }
+
+    @ManyToOne
+    @JoinColumn(name = "EVT_ID")
+    private Evento evento;
+
+    @ManyToOne
+    @JoinColumn(name = "AT_ID")
+    private AreaTematica areaTematica;
+
+    @ManyToOne
+    @JoinColumn(name = "CAT_ID")
+    private Categoria categoria;
 
     /**
      * @return the id
@@ -184,5 +178,47 @@ public class Actividad {
      */
     public void setImagenURL(String imagenURL) {
         this.imagenURL = imagenURL;
+    }
+
+    /**
+     * @return the evento
+     */
+    public Evento getEvento() {
+        return evento;
+    }
+
+    /**
+     * @param evento the evento to set
+     */
+    public void setEvento(Evento evento) {
+        this.evento = evento;
+    }
+
+    /**
+     * @return the areaTematica
+     */
+    public AreaTematica getAreaTematica() {
+        return areaTematica;
+    }
+
+    /**
+     * @param areaTematica the areaTematica to set
+     */
+    public void setAreaTematica(AreaTematica areaTematica) {
+        this.areaTematica = areaTematica;
+    }
+
+    /**
+     * @return the categoria
+     */
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    /**
+     * @param categoria the categoria to set
+     */
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 }

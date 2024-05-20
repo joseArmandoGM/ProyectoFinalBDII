@@ -1,5 +1,0 @@
-com\sgecj\eventos\repository\ActividadRepository.class
-com\sgecj\eventos\domain\Actividad.class
-com\sgecj\eventos\EventosApplication.class
-com\sgecj\eventos\controller\ListadoController.class
-com\sgecj\eventos\service\ActividadService.class
